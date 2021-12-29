@@ -1,0 +1,13 @@
+<form>
+    <label for="myfile">Select a csv-file:</label>
+    <br>
+    <input 
+        type="file" 
+        id="myfile" 
+        name="myfile" 
+        accept=".csv"
+        (change)="fileChanged($event)">
+</form>
+
+<p>{{fileContent}}</p>
+<div id="showContent"></div>
