@@ -6,8 +6,5 @@
         id="myfile" 
         name="myfile" 
         accept=".csv"
-        (change)="fileChanged($event)">
+        (change)="onFileSelect($event.target)">
 </form>
-
-<p>{{fileContent}}</p>
-<div id="showContent"></div>
