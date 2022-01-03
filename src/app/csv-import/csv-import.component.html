@@ -1,10 +1,17 @@
-<form>
-    <label for="myfile">Select a csv-file:</label>
-    <br>
-    <input 
-        type="file" 
-        id="myfile" 
-        name="myfile" 
-        accept=".csv"
-        (change)="onFileSelect($event.target)">
-</form>
+<div>
+    <div>
+      <input type="file" id="myfile" name="myfile" accept=".csv" (change)="readInput($event)" />
+    </div>
+    <div>
+      <button (click)="testClick()">Duplicate file content</button>
+      <br/>
+      <button (click)="testClick2()">Alert csv-content in variable</button>
+  
+      <p id="p1">{{csvContent}}</p>
+      <p id="p2">{{csvHTMLDuplicate}}</p>
+    </div>
+  </div>
+  
+  <div *ngFor="let item of parsedCsv;">
+    <p>{{item}}</p>
+  </div>

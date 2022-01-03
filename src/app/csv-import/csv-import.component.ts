@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ReadCsvService } from '../read-csv.service';
 
 @Component({
   selector: 'app-csv-import',
@@ -7,66 +8,59 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CsvImportComponent implements OnInit {
 
+  csvHTMLDuplicate = "Duplicate";
+  stringAlert = "";
   public csvContent: string;
   public parsedCsv: string[][];
 
-  constructor() { 
-  }
+  constructor(private csvReader: ReadCsvService) {}
 
   ngOnInit(): void {
   }
-
-  onFileLoad(fileLoadedEvent: any): void {
-    const csvSeparator = ';';
-    const textFromFileLoaded: string = fileLoadedEvent.target.result;              
-    this.csvContent = textFromFileLoaded;     
+  
+  //testing functionality
+  testClick() {
+    //FIX: substitute ! for a null check instead
+    document.getElementById("p2")!.innerHTML = document.getElementById(
+      "p1"
+    )!.innerHTML;
     
-    // parsing the csv
-    const txt = textFromFileLoaded;
-    const csv:any = [];
-    const lines = txt.split('\n');
-    lines.forEach(element => {
-      const cols: string[] = element.split(csvSeparator);
-      csv.push(cols);
-      });
-    this.parsedCsv = csv;
-    
-    // // test
-    // console.log(this.parsedCsv);
-    // console.log(this.parsedCsv[0]);
-    // console.log(this.parsedCsv[0][0]);
-    // alert(this.parsedCsv[0][0]);
-    
-    // // demo output as alert
-    // var output: string="";
-    // csv.forEach(row => {
-    //   output += "\n";
-    //   var colNo = 0;
-    //   row.forEach(col => {
-    //     if (colNo>0) output += " | ";
-    //     output += col;
-    //     colNo++;
-    //   });
-    // });
-    // alert(output);
+    //saves html value in variable
+    this.stringAlert = document.getElementById("p1")!.innerHTML;
   }
 
-  onFileSelect(input: any) {
+  //testing functionality
+  testClick2() {
+    alert(this.stringAlert);
+  }
 
-    const files = input.files;
-    // var content = this.csvContent; ???
+  readInput($event) {
+    this.csvReader.readFolder($event.target.files).subscribe((files) => {
+      console.log("The content of the files:", files);
+      this.csvContent = files[0];
+      this.parsedCsv = this.parseCsv(files[0]);
+
+      //parsedCsv[][]
+      //first[] is row, 
+      //second[] is placement in row
+
+      // for(let i = 0; i < this.parsedCsv.length; i++){
+      //   for(let j = 0; j < this.parsedCsv[i].length; j++){
+      //     console.log(this.parsedCsv[i][j]);
+      //   }
+      // }
+    });
+  }
+
+  parseCsv(csvContent: string):any {
+    const csvSeparator = ";";
     
-    if (files && files.length) {
-       
-        // console.log("Filename: " + files[0].name);
-        // console.log("Type: " + files[0].type);
-        // console.log("Size: " + files[0].size + " bytes");        
-
-      const fileToRead = files[0];
-      const fileReader = new FileReader();
-
-      fileReader.onload = this.onFileLoad; 
-      fileReader.readAsText(fileToRead, "UTF-8");
-    }
+    const csv: any = [];
+    const lines = csvContent.split("\n");
+    lines.forEach((element) => {
+      const cols: string[] = element.split(csvSeparator);
+      csv.push(cols);
+    });
+    return csv;
   }
 }
