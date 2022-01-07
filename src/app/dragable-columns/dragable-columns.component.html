@@ -1,0 +1,50 @@
+<div cdkDropListGroup class="dragDrop-container">
+  <div class="single-list-container">
+    <h2>VATNR</h2>
+    <div cdkDropList #VATNRList="cdkDropList" [cdkDropListData]="VATNRArray" [cdkDropListEnterPredicate]="canDrop"
+      class="dragDrop-single-list" (cdkDropListDropped)="drop($event)">
+      <div class="dragDrop-box" *ngFor="let item of VATNRArray" cdkDrag>{{item}}</div>
+    </div>
+  </div>
+
+  <div class="single-list-container">
+    <h2>Trepartshandel</h2>
+    <div cdkDropList #triangularTradeList="cdkDropList" [cdkDropListData]="triangularTradeArray"
+      [cdkDropListEnterPredicate]="canDrop" class="dragDrop-single-list" (cdkDropListDropped)="drop($event)">
+      <div class="dragDrop-box" *ngFor="let item of triangularTradeArray" cdkDrag>{{item}}</div>
+    </div>
+  </div>
+
+  <div class="single-list-container">
+    <h2>Tjänster</h2>
+    <div cdkDropList #servicesList="cdkDropList" [cdkDropListData]="servicesArray" [cdkDropListEnterPredicate]="canDrop"
+      class="dragDrop-single-list" (cdkDropListDropped)="drop($event)">
+      <div class="dragDrop-box" *ngFor="let item of servicesArray" cdkDrag>{{item}}</div>
+    </div>
+  </div>
+
+  <div class="single-list-container">
+    <h2>Varor</h2>
+    <div cdkDropList #godsList="cdkDropList" [cdkDropListData]="godsArray" [cdkDropListEnterPredicate]="canDrop"
+      class="dragDrop-single-list" (cdkDropListDropped)="drop($event)">
+      <div class="dragDrop-box" *ngFor="let item of godsArray" cdkDrag>{{item}}</div>
+    </div>
+  </div>
+
+  <div style="padding-left: 20%;">
+    <h2>CSV-Fil</h2>
+    <div cdkDropList #sourceList="cdkDropList" [cdkDropListData]="sourceArray" cdkDropListOrientation="horizontal"
+      class="dragDrop-list" (cdkDropListDropped)="drop($event)">
+      <div class="dragDrop-box" *ngFor="let item of sourceArray" cdkDrag>{{item}}</div>
+    </div>
+  </div>
+</div>
+
+<!-- 
+<button (click)="alertClick(true)">ALERT VATNR</button>
+<button (click)="alertClick(false)">ALERT source</button> -->
+
+<button style="margin-left: 40px;" (click)="collectData()">Collect data</button>
+<div *ngFor="let item of collectedData">
+  <p>{{item}}</p>
+</div>
