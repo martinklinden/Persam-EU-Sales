@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import {CdkDrag, CdkDragDrop, CdkDropList, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+import { toArray } from 'rxjs';
 
 
 @Component({
@@ -9,25 +10,26 @@ import {CdkDrag, CdkDragDrop, CdkDropList, moveItemInArray, transferArrayItem} f
 })
 export class DragableColumnsComponent implements OnInit {
 
+  @Input() sourceArray: string[][];
+  @Output() messageEvent = new EventEmitter<string[][]>();
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  VATNRArray: string[] = new Array<string>();
-  triangularTradeArray: string[] = new Array<string>();
-  servicesArray: string[] = new Array<string>();
-  godsArray: string[] = new Array<string>();
+  VATNRArray: string[][] = new Array<Array<string>>();
+  triangularTradeArray: string[][] = new Array<Array<string>>();
+  servicesArray: string[][] = new Array<Array<string>>();
+  godsArray: string[][] = new Array<Array<string>>();
 
-  // sourceArray = ['vat', 'tritrade', 'gods', 'services', 'email'];
-  sourceArray = [['1', '1', ''],['2', '', '2'],['', '3', '3'],['4', '4', '4'],['', '5', '']];
   collectedData: string[][] = new Array<Array<string>>();
 
-  // drop(event: CdkDragDrop<string[]>) {
   drop(event: CdkDragDrop<any>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-    } else {
+    } 
+    else {
       transferArrayItem(
         event.previousContainer.data,
         event.container.data,
@@ -35,11 +37,13 @@ export class DragableColumnsComponent implements OnInit {
         event.currentIndex,
       );
     }
+    //is there a better way to send the data? 
+    this.collectData();
   }
 
   //this will happen repeatedly while hovering with an object, is there a better way?
   canDrop(item: CdkDrag, list: CdkDropList) {
-    console.log(list.getSortedItems.length);
+    //console.log(list.getSortedItems.length);
     return !(list.getSortedItems().length > 0);
   }
 
@@ -49,16 +53,18 @@ export class DragableColumnsComponent implements OnInit {
       alert(this.VATNRArray);
     }
     else{
-      alert(this.sourceArray
-    );
+      alert(this.sourceArray);
     }
   }
 
-  //test , remove later
   collectData(){
-    this.collectedData.push(this.VATNRArray);
-    this.collectedData.push(this.triangularTradeArray);
-    this.collectedData.push(this.servicesArray);
-    this.collectedData.push(this.godsArray);
+    this.collectedData = []; // clear
+   
+    this.collectedData.push(this.VATNRArray[0]);
+    this.collectedData.push(this.triangularTradeArray[0]);
+    this.collectedData.push(this.servicesArray[0]);
+    this.collectedData.push(this.godsArray[0]);
+   
+    this.messageEvent.emit(this.collectedData);
   }
 }
