@@ -1,0 +1,10 @@
+<div>
+    <div *ngFor="let item of exportArray">
+        <p>{{item}}</p>
+    </div>
+    <label for="fileName">Filnamn: </label>
+    <input type="text" name="fileName" id="fileName" value={{fileName}}>
+    <br>
+    <br>
+    <button (click)="saveFile()">Export</button>
+</div>

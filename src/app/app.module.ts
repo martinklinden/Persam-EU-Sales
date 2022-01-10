@@ -7,12 +7,14 @@ import { AppComponent } from './app.component';
 
 import { CsvImportComponent } from './csv-import/csv-import.component';
 import { DragableColumnsComponent } from './dragable-columns/dragable-columns.component';
+import { CsvExportComponent } from './csv-export/csv-export.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CsvImportComponent,
-    DragableColumnsComponent
+    DragableColumnsComponent,
+    CsvExportComponent
   ],
   imports: [
     BrowserModule,
