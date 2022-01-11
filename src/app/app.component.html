@@ -1,13 +1,21 @@
-<h1>Title</h1>
+<h1>{{title}}</h1>
 <app-csv-import id="import" (messageEvent)="receiveCsvImportEvent($event)"></app-csv-import>
 <app-dragable-columns id="columns" [sourceArray]="csvColumns" (messageEvent)="receiveColumnDataEvent($event)"></app-dragable-columns>
 <div>
     <label for="fileName">Filnamn: </label>
     <input type="text" name="fileName" id="fileName" value={{fileName}}>
     <br>
-    <br>
+    <div>
+        <label for="textbox1">textbox1: </label>
+        <input type="text" name="textbox1" id="textbox1">
+        <label for="textbox2">textbox2: </label>
+        <input type="text" name="textbox2" id="textbox2">
+        <label for="textbox3">textbox3: </label>
+        <input type="text" name="textbox3" id="textbox3">
+        <label for="textbox4">textbox4: </label>
+        <input type="text" name="textbox4" id="textbox4">
+        <label for="textbox5">textbox5: </label>
+        <input type="text" name="textbox5" id="textbox5">
+    </div>
     <button (click)="saveFile()">Export</button>
 </div>
-
-<!-- REMOVE THIS-->
-<!-- <app-csv-export></app-csv-export> -->

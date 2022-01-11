@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {saveAs} from 'file-saver'
+import { saveAs } from 'file-saver'
 
 @Component({
   selector: 'app-root',
@@ -14,7 +14,8 @@ export class AppComponent {
 
   receiveCsvImportEvent($event){
     this.csvColumns = $event;
-    //make nulllable check instead?
+    // hide elements?
+    // make nulllable check instead?
     // document.getElementById("import")!.style.display = "none"; // hide import html
     // document.getElementById("columns")!.style.display = "block";
   }
@@ -26,17 +27,23 @@ export class AppComponent {
   saveFile(){
     this.fileName = (<HTMLInputElement>document.getElementById('fileName')).value;
     const blob = new Blob([this.createExportString(this.rearrangeCsv())], 
-    {type: "text/csv; charset=utf-8"});
+    {type: "text/csv; charset=UTF-8"});
     saveAs(blob, `${ this.fileName }.csv`);
   }
   
   createExportString(exportArray: string[][]){
     let exportString:string = "";
-    for(let i = 0; i<exportArray.length;i++){
-      for(let j = 0; j<exportArray[i].length;j++){
-        exportString += `${ exportArray[i][j] };`; //contains separator
+
+    for(let i = 0; i < exportArray.length; i++){
+      for(let j = 0; j < exportArray[i].length; j++){
+        if(j == exportArray[i].length - 1){
+          exportString += exportArray[i][j]; //doesn't contain separator
+        }
+        else{
+          exportString += `${ exportArray[i][j] };`; //contains separator
+        }
       }
-      // exportString += "\n"; // maybe not needed
+      //exportString += "\n"; // maybe not needed, depends on importfile?
     }
     return exportString;
   }

@@ -8,11 +8,10 @@ export class ReadCsvService {
 
   constructor() { }
 
-  //made for reading folder, make changes when everything works
-
   private fileCache: string[]; // remove/change later
   private csvReader$: Subject<string[]> = new Subject();
-
+  
+  //made for reading folder, make changes when everything works
   public readFolder(files: string[]) {
     this.fileCache = []; 
     this.readFile(0, files);
@@ -31,6 +30,6 @@ export class ReadCsvService {
       this.fileCache.push(e.target.result);
       this.readFile(index + 1, files);
     };
-    reader.readAsBinaryString(file);
+    reader.readAsText(file, 'UTF-8');
   }
 }

@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import {CdkDrag, CdkDragDrop, CdkDropList, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
-import { toArray } from 'rxjs';
 
 
 @Component({
@@ -47,16 +46,6 @@ export class DragableColumnsComponent implements OnInit {
     return !(list.getSortedItems().length > 0);
   }
 
-  //test , remove later
-  alertClick(bool: boolean){
-    if(bool){
-      alert(this.VATNRArray);
-    }
-    else{
-      alert(this.sourceArray);
-    }
-  }
-
   collectData(){
     this.collectedData = []; // clear
    
@@ -64,7 +53,7 @@ export class DragableColumnsComponent implements OnInit {
     this.collectedData.push(this.triangularTradeArray[0]);
     this.collectedData.push(this.servicesArray[0]);
     this.collectedData.push(this.godsArray[0]);
-   
+
     this.messageEvent.emit(this.collectedData);
   }
 }

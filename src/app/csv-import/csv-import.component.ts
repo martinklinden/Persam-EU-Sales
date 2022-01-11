@@ -20,32 +20,32 @@ export class CsvImportComponent implements OnInit {
 
   readInput($event) {
     this.csvReader.readFolder($event.target.files).subscribe((files) => {
-      this.csvColumns = this.createColumns(this.parseCsv(files[0]));    
-      this.messageEvent.emit(this.csvColumns);
+      this.csvColumns = this.createColumns(this.parseCsv(files[0]));   
+      this.messageEvent.emit(this.csvColumns); //sends the data to parent (app.component)
     });
   }
 
   parseCsv(csvContent: string):string[][] {
     const csvSeparator = this.findSeperator(csvContent);
     const csv: string[][] = [];
-    const lines = csvContent.split("\n");
+    const lines = csvContent.split("\n").filter(e => e);
 
     lines.forEach((element) => {
       const cols: string[] = element.split(csvSeparator);
       csv.push(cols);
     });
+
     return csv;
   }
 
   createColumns(parsedArray: string[][]): string[][]{
     let columnArray: string[][] = new Array<Array<string>>();
+    
     //initialize array (there's got to be a better way...)
-    //maybe create an temp array with the correct length, give it the correct data, then -> this.csvColumns = columnArray
-    for(let i = 0; i < parsedArray.length; i++){
-      if(i < parsedArray[i].length){
+    for(let i = 0; i < parsedArray[0].length; i++){
         columnArray[i] = [];
-      }
     }
+    
     //create columns
     for(let i = 0; i < parsedArray.length; i++){
       for(let j = 0; j < parsedArray[i].length; j++){
