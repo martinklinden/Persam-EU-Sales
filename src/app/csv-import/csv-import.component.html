@@ -3,7 +3,7 @@
       <input type="file" id="myfile" name="myfile" accept=".csv" (change)="readInput($event)" />
     </div>
   <div>
-    <button (click)="testClick()">Duplicate file content</button>
+    <!-- <button (click)="testClick()">Duplicate file content</button>
     <br/>
     <button (click)="testClick2()">Alert csv-content in variable</button>
   
@@ -16,15 +16,15 @@
     <h3>Every row:</h3>
     <div *ngFor="let row of csvParsed;">
       <p>{{row}}</p>
-    </div>
+    </div> -->
       
-    <h3>Every column:</h3>
+    <!-- <h3>Every column:</h3>
     <div *ngFor="let column of csvColumns;" style="background-color: lightcyan;">
-      <!-- <p>{{column}}</p> -->    
+      <p>{{column}}</p>    
       <div *ngFor="let item of column;">
         <p>{{item}}</p>
       </div>
-    </div>
+    </div> -->
 
   </div>
 </div>
