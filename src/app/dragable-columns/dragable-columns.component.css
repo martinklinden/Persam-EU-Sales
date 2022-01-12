@@ -10,9 +10,9 @@ h2{
     vertical-align: top;
   }
 
-  .single-list-container{
+  /* .single-list-container{
     padding-left: 10%;
-  }
+  } */
 
   .dragDrop-single-list {
     width:150px;
