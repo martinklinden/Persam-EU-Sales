@@ -20,10 +20,9 @@ export class AppComponent {
 
   receiveCsvImportEvent($event) {
     this.csvColumns = $event;
-    // hide elements?
     // make nulllable check instead?
-    // document.getElementById("import")!.style.display = "none"; // hide import html
-    // document.getElementById("columns")!.style.display = "block";
+    document.getElementById("import-div")!.style.display = "none";
+    document.getElementById("export-div")!.style.display = "block";
   }
 
   receiveColumnDataEvent($event) {
@@ -37,6 +36,7 @@ export class AppComponent {
     this.name = (<HTMLInputElement>document.getElementById('name')).value;
     this.phone = (<HTMLInputElement>document.getElementById('phone')).value;
     this.email = (<HTMLInputElement>document.getElementById('email')).value;
+    
     const blob = new Blob([this.createExportString(this.rearrangeCsv())],
       { type: "text/csv; charset=UTF-8" });
     saveAs(blob, `${this.fileName}.csv`);

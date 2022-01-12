@@ -1,3 +1,9 @@
-.appContent{
+.app-content{
     margin: 3%;
+}
+#import-div{
+    display: block;
+}
+#export-div{
+    display: none;
 }
