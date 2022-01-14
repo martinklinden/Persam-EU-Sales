@@ -6,4 +6,11 @@
 }
 #export-div{
     display: none;
+    background-color: rgb(247, 190, 136);
+    min-height: 550px;
+    position: relative;
+}
+.textbox-and-label{
+    display: inline;
+    padding: 1%;
 }

@@ -37,7 +37,6 @@ export class DragableColumnsComponent implements OnInit {
       );
     }
   }
-
   //this will happen repeatedly while hovering with an object, is there a better way?
   canDrop(item: CdkDrag, list: CdkDropList) {
     //console.log(list.getSortedItems.length);
@@ -57,11 +56,12 @@ export class DragableColumnsComponent implements OnInit {
       }
     }
 
-    for(let i = 0; i < arrayIdexes.length; i++){
-      this.VATNRArray[i].splice(arrayIdexes[i], 1);
-      this.triangularTradeArray[i].splice(arrayIdexes[i], 1);
-      this.servicesArray[i].splice(arrayIdexes[i], 1);
-      this.godsArray[i].splice(arrayIdexes[i], 1);
+    //reverse for-loop to not disturb order of array while removing elements
+    for(let i = arrayIdexes.length - 1; i >= 0; i--){
+      this.VATNRArray[0].splice(arrayIdexes[i], 1);
+      this.triangularTradeArray[0].splice(arrayIdexes[i], 1);
+      this.servicesArray[0].splice(arrayIdexes[i], 1);
+      this.godsArray[0].splice(arrayIdexes[i], 1);
     }
 
     this.collectedData.push(this.VATNRArray[0]);

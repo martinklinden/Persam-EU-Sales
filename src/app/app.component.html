@@ -4,19 +4,31 @@
         <app-csv-import id="import" (messageEvent)="receiveCsvImportEvent($event)"></app-csv-import>
     </div>
     <div id="export-div">
-        <label for="fileName">Filnamn: </label>
-        <input type="text" name="fileName" id="fileName" value={{fileName}}>
+        <div class="textbox-and-label">
+            <label for="fileName">Filnamn: </label>
+            <input type="text" name="fileName" id="fileName" value={{fileName}}>
+        </div>
         <div>
-            <label for="orgNr">OrgNr: </label>
-            <input type="text" name="orgNr" id="orgNr" value={{orgNr}}>
-            <label for="period">Period: </label>
-            <input type="text" name="period" id="period" value={{period}}>
-            <label for="name">Namn: </label>
-            <input type="text" name="name" id="name" value={{name}}>
-            <label for="phone">TelefonNr: </label>
-            <input type="text" name="phone" id="phone" value={{phone}}>
-            <label for="email">Email: </label>
-            <input type="text" name="email" id="email" value={{email}}>
+            <div class="textbox-and-label">
+                <label for="orgNr">OrgNr: </label>
+                <input type="text" name="orgNr" id="orgNr" value={{orgNr}}>
+            </div>
+            <div class="textbox-and-label">
+                <label for="period">Period: </label>
+                <input type="text" name="period" id="period" value={{period}}>
+            </div>
+            <div class="textbox-and-label">
+                <label for="name">Namn: </label>
+                <input type="text" name="name" id="name" value={{name}}>
+            </div>
+            <div class="textbox-and-label">
+                <label for="phone">TelefonNr: </label>
+                <input type="text" name="phone" id="phone" value={{phone}}>
+            </div>
+            <div class="textbox-and-label">
+                <label for="email">Email: </label>
+                <input type="text" name="email" id="email" value={{email}}>
+            </div>
         </div>
         <app-dragable-columns id="columns" [sourceArray]="csvColumns" (messageEvent)="receiveColumnDataEvent($event)">
         </app-dragable-columns>

@@ -1,8 +1,19 @@
 #drop-zone{
-    display: block;
+    /* display: block; */
     background-color: burlywood;
-    height: 500px;
+    min-height: 550px;
+    position: relative;
 }
+
+.vertical-center {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+
 .custom-file-input::-webkit-file-upload-button {
     visibility: hidden;
 }

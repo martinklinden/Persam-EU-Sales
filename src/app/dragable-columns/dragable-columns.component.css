@@ -28,6 +28,9 @@ li{
     padding-left: 10%;
   } */
 
+  .single-list-container {
+    padding-right: 5%;
+  }
   .dragDrop-single-list {
     min-width:160px;
     max-width: 100%;
@@ -37,7 +40,7 @@ li{
     background: white;
     border-radius: 4px;
     overflow: hidden;
-  }
+   }
   
   .dragDrop-list {
     width: 400px;
@@ -91,5 +94,11 @@ li{
   
   .dragDrop-list.cdk-drop-list-dragging .dragDrop-box:not(.cdk-drag-placeholder) {
     transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  }
+
+  #export-button{
+    position: absolute;
+    left: 2%;
+    bottom: 3%;
   }
   
