@@ -1,3 +1,4 @@
 <div id="drop-zone" (drop)="dropHandler($event)" (dragover)="dragOverHandler($event)">
-    <input type="file" id="myfile" name="myfile" accept=".csv" (change)="readInput($event)" />
+    <label for="myFile" class="custom-file-input"></label>
+    <input type="file" id="myFile" name="myFile" accept=".csv" (change)="readInput($event)" style="display: none"/>
 </div>

@@ -1,9 +1,23 @@
 <div cdkDropListGroup class="dragDrop-container">
+  
+  <div class="checkbox-container">
+    <div *ngFor="let item of VATNRArray">
+        <div *ngFor="let i of item" style="padding: 5%;">
+          <input class="checkbox-input" type="checkbox" checked="true"
+          id="id_{{i}}" name="name_{{i}}" value={{i}}>
+        </div>
+    </div>
+  </div>
+  
   <div class="single-list-container">
     <h2>VATNR</h2>
     <div cdkDropList #VATNRList="cdkDropList" [cdkDropListData]="VATNRArray" [cdkDropListEnterPredicate]="canDrop"
       class="dragDrop-single-list" (cdkDropListDropped)="drop($event)">
-      <div class="dragDrop-box" *ngFor="let item of VATNRArray" cdkDrag>{{item}}</div>
+      <div class="dragDrop-box" *ngFor="let item of VATNRArray" cdkDrag>
+        <ul>
+          <li *ngFor="let i of item">{{i}}</li>
+        </ul>
+      </div>
     </div>
   </div>
 
@@ -11,7 +25,11 @@
     <h2>Trepartshandel</h2>
     <div cdkDropList #triangularTradeList="cdkDropList" [cdkDropListData]="triangularTradeArray"
       [cdkDropListEnterPredicate]="canDrop" class="dragDrop-single-list" (cdkDropListDropped)="drop($event)">
-      <div class="dragDrop-box" *ngFor="let item of triangularTradeArray" cdkDrag>{{item}}</div>
+      <div class="dragDrop-box" *ngFor="let item of triangularTradeArray" cdkDrag>
+        <ul>
+          <li *ngFor="let i of item">{{i}}</li>
+        </ul>
+      </div>
     </div>
   </div>
 
@@ -19,7 +37,11 @@
     <h2>Tjänster</h2>
     <div cdkDropList #servicesList="cdkDropList" [cdkDropListData]="servicesArray" [cdkDropListEnterPredicate]="canDrop"
       class="dragDrop-single-list" (cdkDropListDropped)="drop($event)">
-      <div class="dragDrop-box" *ngFor="let item of servicesArray" cdkDrag>{{item}}</div>
+      <div class="dragDrop-box" *ngFor="let item of servicesArray" cdkDrag>
+        <ul>
+          <li *ngFor="let i of item">{{i}}</li>
+        </ul>
+      </div>
     </div>
   </div>
 
@@ -27,7 +49,11 @@
     <h2>Varor</h2>
     <div cdkDropList #godsList="cdkDropList" [cdkDropListData]="godsArray" [cdkDropListEnterPredicate]="canDrop"
       class="dragDrop-single-list" (cdkDropListDropped)="drop($event)">
-      <div class="dragDrop-box" *ngFor="let item of godsArray" cdkDrag>{{item}}</div>
+      <div class="dragDrop-box" *ngFor="let item of godsArray" cdkDrag>
+        <ul>
+          <li *ngFor="let i of item">{{i}}</li>
+        </ul>
+      </div>
     </div>
   </div>
 
@@ -35,12 +61,13 @@
     <h2>CSV-Fil</h2>
     <div cdkDropList #sourceList="cdkDropList" [cdkDropListData]="sourceArray" cdkDropListOrientation="horizontal"
       class="dragDrop-list" (cdkDropListDropped)="drop($event)">
-      <div class="dragDrop-box" *ngFor="let item of sourceArray" cdkDrag>{{item}}</div>
+      <div class="dragDrop-box" *ngFor="let item of sourceArray" cdkDrag>
+        <ul>
+          <li *ngFor="let i of item">{{i}}</li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- <button style="margin-left: 40px;" (click)="collectData()">Collect data</button>
-<div *ngFor="let item of collectedData">
-  <p>{{item}}</p>
-</div> -->
+<button (click)="collectData()">Exportera fil</button>

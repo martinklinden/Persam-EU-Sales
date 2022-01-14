@@ -27,6 +27,7 @@ export class AppComponent {
 
   receiveColumnDataEvent($event) {
     this.exportColumns = $event;
+    this.saveFile();
   }
 
   saveFile() {
@@ -53,7 +54,7 @@ export class AppComponent {
     exportString += `${this.email}\n`;
 
     // cheating by setting i to 1 and skipping the first row, fix when editing of column is added
-    for (let i = 1; i < exportArray.length; i++) {
+    for (let i = 0; i < exportArray.length; i++) {
       for (let j = 0; j < exportArray[i].length; j++) {
 
         if (j == exportArray[i].length - 1) {

@@ -36,8 +36,6 @@ export class DragableColumnsComponent implements OnInit {
         event.currentIndex,
       );
     }
-    //is there a better way to send the data? 
-    this.collectData();
   }
 
   //this will happen repeatedly while hovering with an object, is there a better way?
@@ -48,7 +46,24 @@ export class DragableColumnsComponent implements OnInit {
 
   collectData(){
     this.collectedData = []; // clear
-   
+    let arrayIdexes:number[] = new Array<number>();
+
+    let inputElements = document.getElementsByClassName('checkbox-input');
+    let arrayInputElements:any = [].slice.call(inputElements);
+    
+    for(let i = 0; i < arrayInputElements.length; ++i){
+      if(!arrayInputElements[i].checked){
+        arrayIdexes.push(i);
+      }
+    }
+
+    for(let i = 0; i < arrayIdexes.length; i++){
+      this.VATNRArray[i].splice(arrayIdexes[i], 1);
+      this.triangularTradeArray[i].splice(arrayIdexes[i], 1);
+      this.servicesArray[i].splice(arrayIdexes[i], 1);
+      this.godsArray[i].splice(arrayIdexes[i], 1);
+    }
+
     this.collectedData.push(this.VATNRArray[0]);
     this.collectedData.push(this.triangularTradeArray[0]);
     this.collectedData.push(this.servicesArray[0]);
