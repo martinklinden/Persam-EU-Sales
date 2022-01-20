@@ -61,7 +61,7 @@
     <h2>CSV-Fil</h2>
     <div cdkDropList #sourceList="cdkDropList" [cdkDropListData]="sourceArray" cdkDropListOrientation="horizontal"
       class="dragDrop-list" (cdkDropListDropped)="drop($event)">
-      <div class="dragDrop-box" *ngFor="let item of sourceArray" cdkDrag>
+      <div class="dragDrop-box" *ngFor="let item of sourceArray" cdkDrag style="border-right: solid 1px rgb(0, 0, 0);">
         <ul>
           <li *ngFor="let i of item">{{i}}</li>
         </ul>

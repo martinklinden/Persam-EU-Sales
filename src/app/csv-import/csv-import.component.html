@@ -1,5 +1,8 @@
 <div id="drop-zone" (drop)="dropHandler($event)" (dragover)="dragOverHandler($event)">
     <div class="vertical-center">
+        <p>Dra in och släpp en CSV-fil i mitten av fönstret eller klicka på "Importera fil..."-knappen för att börja redigera en fil</p>
+        <img src="assets/images/import.png" alt="import icon" width="100px">
+        <br><br>
         <label for="myFile" class="custom-file-input"></label>
         <input type="file" id="myFile" name="myFile" accept=".csv" (change)="readInput($event)" style="display: none" />
     </div>

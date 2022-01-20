@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import {CdkDrag, CdkDragDrop, CdkDropList, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+import { CdkDrag, CdkDragDrop, CdkDropList, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
 
 @Component({
@@ -27,7 +27,7 @@ export class DragableColumnsComponent implements OnInit {
   drop(event: CdkDragDrop<any>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-    } 
+    }
     else {
       transferArrayItem(
         event.previousContainer.data,
@@ -39,35 +39,39 @@ export class DragableColumnsComponent implements OnInit {
   }
   //this will happen repeatedly while hovering with an object, is there a better way?
   canDrop(item: CdkDrag, list: CdkDropList) {
-    //console.log(list.getSortedItems.length);
     return !(list.getSortedItems().length > 0);
   }
 
-  collectData(){
+  collectData() {
     this.collectedData = []; // clear
-    let arrayIdexes:number[] = new Array<number>();
+    let arrayIdexes: number[] = new Array<number>();
+    let tempArray: string[][] = new Array<Array<string>>(4);;
 
     let inputElements = document.getElementsByClassName('checkbox-input');
-    let arrayInputElements:any = [].slice.call(inputElements);
-    
-    for(let i = 0; i < arrayInputElements.length; ++i){
-      if(!arrayInputElements[i].checked){
+    let arrayInputElements: any = [].slice.call(inputElements);
+
+    for (let i = 0; i < arrayInputElements.length; ++i) {
+      if (!arrayInputElements[i].checked) {
         arrayIdexes.push(i);
       }
     }
 
-    //reverse for-loop to not disturb order of array while removing elements
-    for(let i = arrayIdexes.length - 1; i >= 0; i--){
-      this.VATNRArray[0].splice(arrayIdexes[i], 1);
-      this.triangularTradeArray[0].splice(arrayIdexes[i], 1);
-      this.servicesArray[0].splice(arrayIdexes[i], 1);
-      this.godsArray[0].splice(arrayIdexes[i], 1);
+    tempArray[0] = this.VATNRArray[0].slice(0);
+    tempArray[1] = this.triangularTradeArray[0].slice(0);
+    tempArray[2] = this.servicesArray[0].slice(0);
+    tempArray[3] = this.godsArray[0].slice(0);
+
+    // removes the checked in rows
+    // reverse for-loop to not disturb order of array while removing elements
+    for (let i = arrayIdexes.length - 1; i >= 0; i--) {
+      for (let j = 0; j < tempArray.length; j++) {
+        tempArray[j].splice(arrayIdexes[i], 1);
+      }
     }
 
-    this.collectedData.push(this.VATNRArray[0]);
-    this.collectedData.push(this.triangularTradeArray[0]);
-    this.collectedData.push(this.servicesArray[0]);
-    this.collectedData.push(this.godsArray[0]);
+    for (let i = 0; i < tempArray.length; i++) {
+      this.collectedData.push(tempArray[i]);
+    }
 
     this.messageEvent.emit(this.collectedData);
   }

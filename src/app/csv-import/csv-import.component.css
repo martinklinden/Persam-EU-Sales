@@ -1,5 +1,4 @@
 #drop-zone{
-    /* display: block; */
     background-color: burlywood;
     min-height: 550px;
     position: relative;
@@ -10,15 +9,16 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
-  }
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
 
 .custom-file-input::-webkit-file-upload-button {
     visibility: hidden;
 }
 .custom-file-input::before {
-    content: 'Välj fil...';
+    content: 'Importera fil...';
     display: inline-block;
     background: -webkit-linear-gradient(top, #f9f9f9, #e3e3e3);
     border: 1px solid #999;
